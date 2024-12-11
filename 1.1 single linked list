@@ -1,0 +1,77 @@
+class Node:
+    def __init__(self,d):
+        self.data=d
+        self.next=None
+class LinkedList:
+    def __init__(self):
+        self.head=None
+    def insert(self,data):
+        newnode=Node(data)
+        if(self.head==None):
+            self.head=newnode
+        else:
+            t=self.head
+            while(t.next!=None):
+                t=t.next
+            t.next=newnode
+    #insert node at front
+    def insertfront(self,data):
+        newnode=Node(data)
+        newnode.next=self.head
+        self.head=newnode
+    #display nodes
+    def display(self):
+        t=self.head
+        while(t!=None):
+            print(t.data)
+            t=t.next
+    #delete node at front
+    def deletefront(self):
+        t=self.head
+        self.head=t.next
+        t=None
+    #delete node at end
+    def deleteend(self):
+        t1=self.head
+        t2=t1.next
+        while(t2.next!=None):
+            t1=t1.next
+            t2=t2.next
+        t1.next=None
+        t2=None
+    # size of the linkedlist
+    def size(self):
+        t=self.head;c=0
+        while(t!=None):
+            t=t.next
+            c+=1
+        return c
+    #insert position 
+    def insertposition(self,ind,data):
+        newnode=Node(data)
+        t1=self.head
+        while(ind>1):
+            t1=t1.next
+            ind-=1
+        t2=t1.next
+        t1.next=newnode
+        newnode.next=t2
+    #delete position 
+    def deleteposition(self,ind):
+        t1=self.head
+        while(ind>1):
+            t1=t1.next
+            ind-=1
+        t2=t1.next
+        t1.next=t2.next
+ob=LinkedList()
+ob.insert(10)
+ob.insert(20)
+ob.insert(30)
+ob.insertfront(40)
+ob.deletefront()
+ob.insertposition(2,100)
+ob.deleteend()
+ob.deleteposition(2)
+ob.display()
+print("size of the linked list ->",ob.size())
