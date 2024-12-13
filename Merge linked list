@@ -1,0 +1,49 @@
+class Node:
+    def __init__(self,d):
+        self.data=d
+        self.next=None
+class LinkedList:
+    def insert(self,data,head):
+        newnode=Node(data)
+        if(head==None):
+            head=newnode
+        else:
+            t=head
+            while(t.next!=None):
+                t=t.next
+            t.next=newnode
+        return head
+    def display(self,h):
+        print("Merged list")
+        while(h!=None):
+            print(h.data,end=" ")
+            h=h.next
+    def merge(self,i,j,k):
+        while(i!=None and j!=None):
+            if(i.data <= j.data):
+                k=self.insert(i.data,k)
+                i=i.next
+            elif(i.data > j.data):
+                k=self.insert(j.data,k)
+                j=j.next
+        while(i!=None):
+            k=self.insert(i.data,k)
+            i=i.next
+        while(j!=None):
+            k=ob.insert(j.data,k)
+            j=j.next
+        return k
+ob=LinkedList()
+h1,h2,h3=None,None,None
+n=int(input("Enter l1 size:"))
+for i in range(n):
+   print("Enter the data",i,": ")
+   a=int(input())
+   h1=ob.insert(a,h2)
+m=int(input("Enter l2 size:"))
+for i in range(m):
+   print("Enter the data",i)
+   a=int(input())
+   h2=ob.insert(a,h2)
+h3=ob.merge(h1,h2,h3)
+ob.display(h3)      
