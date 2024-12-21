@@ -1,0 +1,36 @@
+class Stack:
+    s=[0]*10
+    top=-1
+    mini=0
+def push(data):
+    if(s1.top==-1):
+        s1.mini=data
+        s1.top+=1
+        s1.s[s1.top]=data
+    elif(data>s1.mini):
+        s1.top+=1
+        s1.s[s1.top]=data
+    else:
+        t=2*data-s1.mini
+        s1.top+=1
+        s1.s[s1.top]=t
+        s1.mini=data
+def pop():
+    if(s1.s[s1.top]>s1.mini):
+        t=s1.s[s1.top]
+        s1.top-=1
+        return t
+    else:
+        t=s1.mini
+        s1.mini=2*s1.mini-s1.s[s1.top]
+        s1.top-=1
+        return t
+    if(s1.top<0):
+        s1.mini=0
+s1=Stack()
+l=[3,5,2,1,0,6]
+for i in range(len(l)):
+    push(l[i])
+print(s1.mini)
+pop();pop()
+print(s1.mini)
