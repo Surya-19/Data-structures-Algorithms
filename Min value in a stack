@@ -2,6 +2,7 @@ class Stack:
     s=[0]*10
     top=-1
     mini=0
+#push data
 def push(data):
     if(s1.top==-1):
         s1.mini=data
@@ -15,6 +16,7 @@ def push(data):
         s1.top+=1
         s1.s[s1.top]=t
         s1.mini=data
+#pop data
 def pop():
     if(s1.s[s1.top]>s1.mini):
         t=s1.s[s1.top]
