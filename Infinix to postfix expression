@@ -1,0 +1,52 @@
+def pre(n):
+    if(n=='+' or n=='-'):
+        return 1
+    elif(n=='*' or n=='/'):
+        return 2
+    elif(n=='^'):
+        return 3
+    else:
+        return 0
+s=input("Enter the Expression: ")
+stack=[]
+output="" 
+for i in range(len(s)):
+    if(s[i]>='0' and s[i]<='9'):
+        output+=s[i]
+    else:
+        top=len(stack)-1
+        if(len(stack)!=0 and s[i]=='('):
+            stack.append(s[i])
+            continue
+        elif(len(stack)!=0 and s[i]==')'):
+            while(stack[top]!='('):
+                t=stack.pop()
+                output+=t
+                top-=1
+            stack.pop()
+            continue
+        elif(len(stack)!=0 and pre(stack[top])>pre(s[i])):
+            t=stack.pop()
+            output+=t
+        stack.append(s[i])
+while(len(stack)!=0):
+    t=stack[len(stack)-1]
+    output+=t
+    stack.pop()
+print("Postfix: ",output)
+#Evaluate postfix
+for i in range(len(output)):
+    if(output[i]>='0' and output[i]<='9'):
+        stack.append(output[i])
+    else:
+        v1=int(stack.pop())
+        v2=int(stack.pop())
+        if(output[i]=="+"):
+            stack.append(v2+v1)
+        elif(output[i]=='-'):
+            stack.append(v2-v1)
+        elif(output[i]=='*'):
+            stack.append(v2*v1)
+        elif(output[i]=='/'):
+            stack.append(v2//v1)
+print("Answer: ",*stack)
