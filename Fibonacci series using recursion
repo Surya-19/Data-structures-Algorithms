@@ -1,0 +1,15 @@
+class Node:
+    def __init__(self,d):
+        self.data=d
+        self.left=None
+        self.next=None
+class BST():
+    def __init__(self):
+        self.root=None
+ob=BST()
+def fun(n):
+    if(n<=2):
+        return n
+    else:
+        return fun(n-1)+fun(n-2)
+print(fun(5))
