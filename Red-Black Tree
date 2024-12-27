@@ -1,0 +1,121 @@
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.left=None
+        self.right=None
+        self.parent=None
+        self.color='r'
+class RedBlack:
+    def __init__(self):
+        self.root=None
+        self.LL=False
+        self.LR=False
+        self.RR=False
+        self.RL=False
+    def inserthelper(self,root,data):
+        flag=False
+        if(root==None):
+            newnode=Node(data)
+            return newnode
+        elif(data<root.data):
+            root.left=self.inserthelper(root.left,data)
+            root.left.parent=root
+            if(root.color=='r' and root.left.color=='r'):
+                flag=True
+        elif(data>root.data):
+            root.right=self.inserthelper(root.right,data)
+            root.right.parent=root
+            if(root.color=='r' and root.right.color=='r'):
+                flag=True
+        
+        #code for rotations:
+        if(self.RR==True):
+            root=self.leftrotate(root)
+            root.color='b'
+            root.left.color='r'
+            self.RR=False
+        if(self.RL==True):
+            root.right=self.rightrotate(root.right)
+            root.right.parent=root
+            root=leftrotate(root)
+            root.color='b'
+            root.left.color='r'
+            self.RL=False
+        if(self.LL==True):
+            root=self.rightrotate(root)
+            root.color='b'
+            root.right.color='r'
+            self.LL=False
+        if(self.LR==True):
+            root.left=self.leftrotate(root.left)
+            root.left.parent=root
+            root=self.rightrotate(root)
+            root.color='b'
+            root.right.color='r'
+            self.LR=False
+        
+        if(flag==True):
+            #rotations
+            if(root.parent.left==None or root.parent.left.color=='b'):
+                if(root.left==None and root.right.color=='r'):
+                    self.RR=True
+                elif(root.right==None and root.left.color=='r'):
+                    self.RL=True
+            elif(root.parent.right==None or root.parent.right.color=='b'):
+                if(root.right==None and root.left.color=='r'):
+                    self.LL=True
+                elif(root.left==None and root.right.color=='r'):
+                    self.LR=True
+                    
+            # changing colors
+            elif(root.parent.left.color=='r'):
+                root.color='b'
+                root.parent.left.color='b'
+                if(root.parent!=self.root):
+                    root.parent.color='r'
+            elif(root.parent.right.color=='r'):
+                root.color='b'
+                root.parent.right.color='b'
+                if(root.parent!=self.root):
+                    root.parent.color='r'
+            flag=False        
+        return root
+    def leftrotate(self,root):
+        t1=root.right
+        t2=t1.left
+        root.right=t2
+        t1.left=root
+        root.parent=t1
+        if(t2!=None):
+            t2.parent=root
+        
+        return t1
+    def rightrotate(self,root):
+        t1=root.left
+        t2=t1.right
+        root.left=t2
+        t1.right=root
+        root.parent=t1
+        if(t2!=None):
+            t2.parent=root
+        
+        return t1
+    def insert(self,data):
+        if(self.root==None):
+            newnode=Node(data)
+            self.root=newnode
+            self.root.color='b'
+        else:
+            self.root=self.inserthelper(self.root,data)
+    def display(self):
+        self.helper(self.root)
+    def helper(self,root):
+        if(root==None):
+            return
+        self.helper(root.left)
+        print(root.data,"->",root.color,end=" ")
+        self.helper(root.right)
+        
+ob=RedBlack()
+ob.insert(5);ob.insert(6);ob.insert(7)
+ob.display()
