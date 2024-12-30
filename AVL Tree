@@ -1,0 +1,88 @@
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.left=None
+        self.right=None
+        self.height=1
+class AVLTREE:
+    def insert(self,root,data):
+        
+        #insert left or right
+        if(root==None):
+            newnode=Node(data)
+            return newnode
+        elif(data<root.data):
+            root.left=self.insert(root.left,data)
+        elif(data>root.data):
+            root.right=self.insert(root.right,data)
+
+        #update height
+        left=1+self.getheight(root.left)
+        right=1+self.getheight(root.right)
+        if(left>right):
+            root.height=left
+        else:
+            root.height=right
+            
+        #balance factor
+        bf=self.getbf(root)
+        
+        #rotation
+        if(bf<-1):
+            if(data>root.right.data):
+                root=self.leftrotate(root)
+            elif(data<root.right.data):
+                root.right=self.rightrotate(root.right)
+                root=self.leftrotate(root)
+                
+        elif(bf>1):
+            if(data<root.left.data):
+                root=self.rightrotate(root)
+            elif(data>root.left.data):
+                root.left=self.leftrotate(root.left)
+                root=self.rightrotate(root)
+        return root
+        
+    def getheight(self,root):
+        if(root==None):
+            return 0
+        else:
+            return root.height
+            
+    def getbf(self,root):
+        if(root==None):
+            return 0
+        else:
+            left=self.getheight(root.left)
+            right=self.getheight(root.right)
+            return left-right
+    
+    def rightrotate(self,root):
+        t1=root.left
+        t2=t1.right
+        root.left=t2
+        t1.right=root
+        root.height=1+self.getheight(root)
+        t1.height=1+self.getheight(t1)
+        return t1
+        
+    def leftrotate(self,root):
+        t1=root.right
+        t2=t1.left
+        root.right=t2
+        t1.left=root
+        root.height=1+self.getheight(root)
+        t1.height=1+self.getheight(t1)
+        return t1
+    
+    def inorder(self,root):
+        if root==None:
+            return
+        self.inorder(root.left)
+        print(root.data,end=" ")
+        self.inorder(root.right)
+ob=AVLTREE();root=None
+root=ob.insert(root,10);root=ob.insert(root,20)
+root=ob.insert(root,30)
+print(root.data)
+ob.inorder(root)
