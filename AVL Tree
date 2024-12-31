@@ -86,3 +86,4 @@ root=ob.insert(root,10);root=ob.insert(root,20)
 root=ob.insert(root,30)
 print(root.data)
 ob.inorder(root)
+#AVL TREE having left order,right order and it follows inorder 
