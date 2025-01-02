@@ -1,0 +1,71 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+class Tree:
+    def insert(self, root, data):
+        if root is None:
+            return Node(data)
+        elif data < root.data:
+            root.left = self.insert(root.left, data)
+        elif data > root.data:
+            root.right = self.insert(root.right, data)
+        return root
+
+    def delete(self, root, data):
+        if root is None:
+            return root
+
+        # Traverse the tree
+        if data < root.data:
+            root.left = self.delete(root.left, data)
+        elif data > root.data:
+            root.right = self.delete(root.right, data)
+        else:
+            # Case 1: Node has no children (leaf node)
+            if root.left is None and root.right is None:
+                root = None
+            # Case 2: Node has one child
+            elif root.left is None:
+                root = root.right
+            elif root.right is None:
+                root = root.left
+            # Case 3: Node has two children
+            else:
+                # Find the in-order successor (smallest in the right subtree)
+                min_node = self._find_min(root.right)
+                root.data = min_node.data
+                root.right = self.delete(root.right, min_node.data)
+
+        return root
+
+    def _find_min(self, root):
+        # Helper function to find the node with the minimum value in the BST
+        while root.left is not None:
+            root = root.left
+        return root
+
+    def display(self, root):
+        if root is None:
+            return
+        self.display(root.left)
+        print(root.data, end=" ")
+        self.display(root.right)
+
+# Test the Tree operations
+ob = Tree()
+root = None
+root = ob.insert(root, 10)
+root = ob.insert(root, 20)
+root = ob.insert(root, 30)
+
+print("BST after insertions:")
+ob.display(root)
+print()  # for a newline
+
+root = ob.delete(root, 10)
+print("BST after deleting 10:")
+ob.display(root)
+print()
