@@ -1,27 +1,20 @@
-Data Structure Algorithms Repository
-This repository contains various implementations of data structures and algorithms to enhance understanding and solve problems efficiently. Below is the list of topics covered.
+Data Structures and Algorithms Repository
+This repository contains implementations and solutions for various data structures and algorithms. Each file is named and organized by topic, making it easier to navigate and find relevant examples.
 
 Table of Contents
-Single Linked List
-Find Nth Node
-Merge Linked List
-Circular Linked List
-Stack Implementation Using Linked List
-Find Minimum Value in a Stack
-1. Single Linked List
-An implementation of a singly linked list, demonstrating insertion, deletion, and traversal operations.
-
-2. Find Nth Node
-A program to find the Nth node from the start or end in a linked list.
-
-3. Merge Linked List
-An algorithm to merge two sorted linked lists into a single sorted list.
-
-4. Circular Linked List
-Implementation of a circular linked list, including insertion and traversal operations.
-
-5. Stack Implementation Using Linked List
-A stack implementation using a linked list, showcasing push, pop, and peek operations.
-
-6. Find Minimum Value in a Stack
-An optimized solution to find the minimum value in a stack in constant time.
+Linked Lists
+1.1 Single Linked List: Implementation of a single linked list.
+1.2 Find Nth Node: Program to find the Nth node in a linked list.
+1.3 Merge Linked List: Function to merge two linked lists.
+1.4 Circular Linked List: Implementation of a circular linked list.
+1.5 Stack Using Linked List: Stack implementation using a linked list.
+Stacks and Expressions
+2.1 Min Value in a Stack: Program to find the minimum value in a stack.
+2.2 Infix to Postfix Expression: Convert an infix expression to a postfix expression.
+Trees
+3.1 Binary Search Tree: Implementation of a binary search tree.
+3.2 Red-Black Tree: Implementation of a red-black tree.
+3.3 AVL Tree: Implementation of an AVL tree.
+3.4 Binary Search Tree Operations: Additional operations on a binary search tree.
+Recursion
+Generate Fibonacci Series Using Recursion: Program to generate the Fibonacci series using recursion.
