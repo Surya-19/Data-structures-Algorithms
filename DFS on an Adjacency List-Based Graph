@@ -1,0 +1,42 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class Graph:
+    def __init__(self, v):
+        self.vertex = v
+        self.graph = [None] * v
+
+    def insert(self, ver, edge):
+        newnode = Node(edge)
+        if self.graph[ver] is None:
+            self.graph[ver] = newnode
+        else:
+            temp = self.graph[ver]
+            while temp.next is not None:
+                temp = temp.next
+            temp.next = newnode
+
+    def DFS(self, visited, v):
+        visited[v] = True
+        print(v, end=" -> ")
+        temp = self.graph[v]
+        while temp is not None:
+            data = temp.data
+            if not visited[data]:
+                self.DFS(visited, data)
+            temp = temp.next
+
+# Example Usage
+ob = Graph(4)
+ob.insert(0, 1)
+ob.insert(0, 2)
+ob.insert(0, 3)
+ob.insert(1, 2)
+ob.insert(2, 3)
+ob.insert(3, 1)
+visited = [False] * 4
+start_vertex = 1
+print("DFS Traversal (Adjacency List):")
+ob.DFS(visited, start_vertex)
