@@ -1,12 +1,4 @@
-class Node:
-    def __init__(self,d):
-        self.data=d
-        self.left=None
-        self.next=None
-class BST():
-    def __init__(self):
-        self.root=None
-ob=BST()
+#basic recursion logic function 
 def fun(n):
     if(n<=2):
         return n
